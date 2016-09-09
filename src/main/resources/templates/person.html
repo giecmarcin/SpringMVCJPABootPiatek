@@ -1,0 +1,18 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/person/add}" th:object="${person}" method="post">
+    <h3>Panel dodawania</h3>
+    <hr/>
+    <!--<input type="hidden" th:field="*{id}" class="form-control" placeholder="Id"/>-->
+    <br/>Name: <input type="text" th:field="*{firstName}"/>
+    <br/>Lastname:<input type="text" th:field="*{lastname}"/>
+    <br/><button type="submit">Dodaj</button>
+    <br />
+</form>
+</body>
+</html>

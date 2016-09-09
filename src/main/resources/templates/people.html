@@ -1,0 +1,21 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Lastname</th>
+    </tr>
+    <tr th:each="p  : ${people}">
+        <td th:text="${p.id}">Id</td>
+        <td th:text="${p.firstName}">Nazwa</td>
+        <td th:text="${p.lastname}">Miasto</td>
+    </tr>
+</table>
+</body>
+</html>
