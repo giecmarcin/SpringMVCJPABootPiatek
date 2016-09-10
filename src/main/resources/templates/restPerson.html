@@ -1,6 +1,8 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
+    <link type="text/css" th:href="@{/mystyle.css}" rel="stylesheet"/>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
           rel="stylesheet" media="screen"/>
@@ -32,7 +34,7 @@
             $.ajax({
                         type: "POST",
                         //url: "http://localhost:8080/app/rest/person/add",
-                        url: "/app/rest/person/add",
+                        url: "/rest/person/add",
                         data: JSON.stringify({
                             firstName: firstName,
                             lastname: lastname,
@@ -60,13 +62,12 @@
 
     <script type="text/javascript">
         function showContactForm() {
-            var row = "<tr class='rowWithContactData'>" +
-                    "<td>" + 'Type: <input type="text" class="contactType"/>' + "</td>" +
-                    "<td>" + 'Value: <input type="text" class="contactValue"/>' + "</td>" +
-                    "</tr>";
-            $(".lOfPeople").append(
-                    "<li class='contactForPerson'>" + row + "</li>"
-            );
+            var row = "<br/>" + "<div>" +
+                    "<div>" + 'Type: <input type="text" class="contactType"/>' + "</div>" +
+                    "<div>" + 'Value: <input type="text" class="contactValue"/>' + "</div>" +
+                    "</div>";
+            var allRow = "<li>" + row + "</li>";
+            $(".lOfPeople").append(allRow);
         }
     </script>
 </head>
@@ -110,35 +111,35 @@
     <button id="refreshPeople" class="btn btn-default" type="submit">Refresh</button>
 
     <div class="people">
-        <table class="data-person-js table table-striped" id="tabPeople">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Lastname</th>
-                <th>Kontakty</th>
-                <th>Kontakt</th>
-            </tr>
-            </thead>
-        </table>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <div class="data-person-js table divTable" id="tabPeople">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell">Id</div>
+                    <div class="divTableCell">Name</div>
+                    <div class="divTableCell">Lastname</div>
+                    <div class="divTableCell">Kontakty</div>
+                    <div class="divTableCell" >Kontakt</div>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript">
 
             $("#refreshPeople").bind("click", function () {
-
                 $('#tabPeople tbody').html('');
 
-                $.get("http://localhost:8080/app/rest/person/all", function (data) {
-                    $.each(data, function (i, person) {
+//                $(this).ready(function(){
+//                    $(d).attr('class','divTableCell');
 
-                        $(".data-person-js").append(
-                                "<tr>" +
-                                "<td>" + person.id + "</td>" +
-                                "<td>" + person.firstName + "</td>" +
-                                "<td>" + person.lastname + "</td>" +
-                                "<td>" + person.contacts + "</td>" +
-                                "<td>" + 'Dodaj kontakt' + "</td>" +
-                                "</tr>");
+                $.get("http://localhost:8080/rest/person/all", function (data) {
+                    $.each(data, function (i, person) {
+                        var row = "<div class='divTableRow'>" +
+                                "<div class='divTableCell'>" + person.id + "</div>" +
+                                "<div class='divTableCell'>" + person.firstName + "</div>" +
+                                "<div class='divTableCell'>" + person.lastname + "</div>" +
+                                "<div class='divTableCell'>" + person.contacts + "</div>" +
+                                "<div class='divTableCell'>" + 'Dodaj kontakt' + "</div>" +
+                                "</div>";
+                        $(".data-person-js").append(row);
                     });
                 });
             });
