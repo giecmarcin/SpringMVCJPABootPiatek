@@ -20,7 +20,6 @@
             var lastname = $('#lastname').val();
             var pcontacts = [];
 
-
             $("li").each(function (index) {
                 var tempType = $(this).find("input.contactType").val();
                 var tempContact = $(this).find("input.contactValue").val();
@@ -124,15 +123,13 @@
         <script type="text/javascript" th:inline="javascript">
             /*<![CDATA[*/
             $("#refreshPeople").bind("click", function () {
-//                $('#tabPeople tbody').html('');
-                 $("div.divTableRow").remove();
+                 $("div.divTableCell").remove();
 //                $(this).ready(function(){
 //                    $(d).attr('class','divTableCell');
 
                 $.get("http://localhost:8080/rest/person/all", function (data) {
                     $.each(data, function (i, person) {
-                        var tempContacts = person.contacts;
-                        var row = "<div class='divTableRow'>" +
+                            var row = "<div class='divTableRow'>" +
                                 "<div class='divTableCell'>" + person.id + "</div>" +
                                 "<div class='divTableCell'>" + person.firstName + "</div>" +
                                 "<div class='divTableCell'>" + person.lastname + "</div>" +
