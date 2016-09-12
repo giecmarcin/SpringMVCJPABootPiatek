@@ -118,7 +118,6 @@
                     <div class="divTableCell">Name</div>
                     <div class="divTableCell">Lastname</div>
                     <div class="divTableCell">Kontakty</div>
-                    <div class="divTableCell" >Kontakt</div>
                 </div>
             </div>
         </div>
@@ -132,12 +131,12 @@
 
                 $.get("http://localhost:8080/rest/person/all", function (data) {
                     $.each(data, function (i, person) {
+                        var tempContacts = person.contacts;
                         var row = "<div class='divTableRow'>" +
                                 "<div class='divTableCell'>" + person.id + "</div>" +
                                 "<div class='divTableCell'>" + person.firstName + "</div>" +
                                 "<div class='divTableCell'>" + person.lastname + "</div>" +
                                 "<div class='divTableCell'>" + person.contacts + "</div>" +
-                                "<div class='divTableCell'>" + 'Dodaj kontakt' + "</div>" +
                                 "</div>";
                         $(".data-person-js").append(row);
                     });
